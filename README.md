@@ -1,6 +1,6 @@
-# NT Flash Tool
+# EMBF Flash Tool
 
-A unified command-line tool for flashing disting NT firmware. Replaces the need for Python/SPSDK installation.
+A unified command-line tool for flashing EMBF firmware. Replaces the need for Python/SPSDK installation.
 
 ## Features
 
@@ -43,9 +43,9 @@ The build produces a single binary: `nt-flash` (or `nt-flash.exe` on Windows).
 
 ## Usage
 
-### Put disting NT in bootloader mode first
+### Put EMBF in bootloader mode first
 
-Before flashing, enable bootloader mode on the disting NT:
+Before flashing, enable bootloader mode on the EMBF:
 ```
 Menu > Misc > Enter bootloader mode...
 ```
@@ -53,7 +53,7 @@ Menu > Misc > Enter bootloader mode...
 ### Flash from local file
 
 ```bash
-nt-flash /path/to/distingNT_1.12.0.zip
+nt-flash /path/to/embf_1.12.0.zip
 ```
 
 ### Download and flash specific version
@@ -92,31 +92,31 @@ nt-flash --list
 
 The tool expects ZIP files containing:
 ```
-distingNT_X.Y.Z.zip
+embf_X.Y.Z.zip
 ├── MANIFEST.json
 ├── bootable_images/
-│   ├── unsigned_MIMXRT1060_flashloader.bin
-│   └── disting_NT.bin
+│   ├── unsigned_MIMXRT1020_flashloader.bin
+│   └── EMBF.bin
 └── ...
 ```
 
-Official firmware packages from [Expert Sleepers](https://www.expert-sleepers.co.uk/distingNTfirmwareupdates.html) are fully supported.
+Official firmware packages from [Expert Sleepers](https://expert-sleepers.co.uk/foreverfirmwareupdates.html) are fully supported.
 
 ## How It Works
 
 The flash process involves two stages:
 
-1. **SDP Mode** (USB 0x1FC9:0x0135): Upload flashloader to RAM and execute it
+1. **SDP Mode** (USB 0x1FC9:0x0130): Upload flashloader to RAM and execute it
 2. **Bootloader Mode** (USB 0x15A2:0x0073): Configure flash, erase, write firmware, reset
 
 ## Troubleshooting
 
 ### Device not found
 
-- Ensure disting NT is in bootloader mode
+- Ensure EMBF is in bootloader mode
 - On Linux, you may need udev rules. Create `/etc/udev/rules.d/99-disting.rules`:
   ```
-  SUBSYSTEM=="usb", ATTR{idVendor}=="1fc9", ATTR{idProduct}=="0135", MODE="0666"
+  SUBSYSTEM=="usb", ATTR{idVendor}=="1fc9", ATTR{idProduct}=="0130", MODE="0666"
   SUBSYSTEM=="usb", ATTR{idVendor}=="15a2", ATTR{idProduct}=="0073", MODE="0666"
   ```
   Then: `sudo udevadm control --reload-rules`
@@ -134,6 +134,6 @@ This tool incorporates:
 
 ## Credits
 
-- [Expert Sleepers](https://www.expert-sleepers.co.uk/) for the disting NT
+- [Expert Sleepers](https://www.expert-sleepers.co.uk/) for the EMBF
 - [NXP Semiconductors](https://www.nxp.com/) for BLFWK/SPSDK
 - [apexrtos/nxp_blhost_sdphost](https://github.com/apexrtos/nxp_blhost_sdphost) for the portable build setup
