@@ -1,6 +1,6 @@
 # EMBF Flash Tool
 
-A unified command-line tool for flashing EMBF firmware. Replaces the need for Python/SPSDK installation.
+A unified command-line tool for flashing EMBF ('Forever') firmware. Replaces the need for Python/SPSDK installation.
 
 ## Features
 
@@ -29,8 +29,8 @@ sudo apt-get install libudev-dev
 
 ```bash
 # Clone with submodules
-git clone --recursive https://github.com/thorinside/nt-flash.git
-cd nt-flash
+git clone --recursive https://github.com/expertsleepersltd/embf-flash.git
+cd embf-flash
 
 # Build
 make
@@ -39,7 +39,7 @@ make
 mingw32-make
 ```
 
-The build produces a single binary: `nt-flash` (or `nt-flash.exe` on Windows).
+The build produces a single binary: `embf-flash` (or `embf-flash.exe` on Windows).
 
 ## Usage
 
@@ -53,31 +53,31 @@ Menu > Misc > Enter bootloader mode...
 ### Flash from local file
 
 ```bash
-nt-flash /path/to/embf_1.12.0.zip
+embf-flash /path/to/embf_1.12.0.zip
 ```
 
 ### Download and flash specific version
 
 ```bash
-nt-flash --version 1.12.0
+embf-flash --version 1.12.0
 ```
 
 ### Download and flash latest
 
 ```bash
-nt-flash --latest
+embf-flash --latest
 ```
 
 ### Download from custom URL
 
 ```bash
-nt-flash --url https://example.com/firmware.zip
+embf-flash --url https://example.com/firmware.zip
 ```
 
 ### List available versions
 
 ```bash
-nt-flash --list
+embf-flash --list
 ```
 
 ### Options
