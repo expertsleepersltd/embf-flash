@@ -974,7 +974,7 @@ int main(int argc, char* argv[]) {
     // Handle --list
     if (listVersions) {
         logInfo("Available firmware versions from Expert Sleepers:");
-        logInfo("  https://www.expert-sleepers.co.uk/distingNTfirmwareupdates.html");
+        logInfo("  https://expert-sleepers.co.uk/foreverfirmwareupdates.html");
         logInfo("\nKnown versions: 1.12.0, 1.11.0, 1.10.0, 1.9.0, 1.8.0, 1.7.1, 1.7.0, 1.6.1, 1.6.0");
         return 0;
     }
