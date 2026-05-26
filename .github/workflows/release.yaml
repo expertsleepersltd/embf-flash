@@ -22,17 +22,17 @@ jobs:
         include:
           - os: macos-latest
             name: macos
-            artifact: nt-flash
+            artifact: embf-flash
             archive_cmd: zip -r
             archive_ext: zip
           - os: ubuntu-latest
             name: linux
-            artifact: nt-flash
+            artifact: embf-flash
             archive_cmd: tar -czvf
             archive_ext: tar.gz
           - os: windows-latest
             name: windows
-            artifact: nt-flash.exe
+            artifact: embf-flash.exe
             archive_cmd: zip -r
             archive_ext: zip
 
@@ -89,7 +89,7 @@ jobs:
           make clean || true
           make universal
           echo "Binary architecture info:"
-          file nt-flash
+          file embf-flash
 
       - name: Build (Linux)
         if: matrix.os == 'ubuntu-latest'
@@ -109,7 +109,7 @@ jobs:
         shell: bash
         run: |
           VERSION="${{ steps.get_version.outputs.version }}"
-          ARCHIVE_NAME="nt-flash-${VERSION}-${{ matrix.name }}"
+          ARCHIVE_NAME="embf-flash-${VERSION}-${{ matrix.name }}"
 
           mkdir -p "release/${ARCHIVE_NAME}"
           cp "${{ matrix.artifact }}" "release/${ARCHIVE_NAME}/"
@@ -127,7 +127,7 @@ jobs:
         shell: msys2 {0}
         run: |
           VERSION="${{ steps.get_version.outputs.version }}"
-          ARCHIVE_NAME="nt-flash-${VERSION}-${{ matrix.name }}"
+          ARCHIVE_NAME="embf-flash-${VERSION}-${{ matrix.name }}"
 
           mkdir -p "release/${ARCHIVE_NAME}"
           cp "${{ matrix.artifact }}" "release/${ARCHIVE_NAME}/"
@@ -139,7 +139,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: nt-flash-${{ matrix.name }}
+          name: embf-flash-${{ matrix.name }}
           path: release/*.${{ matrix.archive_ext }}
 
   release:
@@ -181,7 +181,7 @@ jobs:
           ## Installation
 
           1. Download the archive for your platform
-          2. Extract and run `nt-flash` (or `nt-flash.exe` on Windows)
+          2. Extract and run `embf-flash` (or `embf-flash.exe` on Windows)
 
           ### macOS
           You may need to allow the app in System Preferences > Security & Privacy.
@@ -202,13 +202,13 @@ jobs:
           # Put disting NT in bootloader mode first (Menu > Misc > Enter bootloader mode...)
 
           # Flash latest firmware
-          nt-flash --latest
+          embf-flash --latest
 
           # Flash specific version
-          nt-flash --version 1.12.0
+          embf-flash --version 1.12.0
 
           # Flash local file
-          nt-flash /path/to/firmware.zip
+          embf-flash /path/to/firmware.zip
           ```
 
           EOF
